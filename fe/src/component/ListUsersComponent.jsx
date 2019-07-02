@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../store/modules';
-import { Drawer, Icon, Col, Row, Select, DatePicker, Divider, Table, Input, InputNumber, Button, Popconfirm, Form } from 'antd';
+import { Drawer, Icon, Col, Row, DatePicker, Divider, Table, Input, Button, Popconfirm, Form } from 'antd';
 import moment from 'moment'
 
 const dateFormat = 'DD/MM/YYYY';
@@ -106,7 +106,6 @@ class ListUsersComponent extends Component {
                 title: 'Actions',
                 dataIndex: '',
                 render: (text, record) => {
-                    const { editingKey } = this.state;
                     const editable = this.isEditing(record);
                     return editable ? (
                         <span>
