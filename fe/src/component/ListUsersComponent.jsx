@@ -70,19 +70,19 @@ class ListUsersComponent extends Component {
             {
                 title: 'First Name',
                 dataIndex: 'firstName',
-                sorter: (a, b) => a.firstName.length - b.firstName.length,
+                sorter: (a, b) => ('' + a.firstName).localeCompare(b.firstName),
                 editable: true,
             },
             {
                 title: 'Last Name',
                 dataIndex: 'lastName',
-                sorter: (a, b) => a.lastName.length - b.lastName.length,
+                sorter: (a, b) => ('' + a.lastName).localeCompare(b.lastName),
                 editable: true,
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
-                sorter: (a, b) => a.email.length - b.email.length,
+                sorter: (a, b) => ('' + a.email).localeCompare(b.email),
                 editable: true,
             },
             {
@@ -91,14 +91,14 @@ class ListUsersComponent extends Component {
                 render: (text, record) => {
                     return record.dateOfBirth && record.dateOfBirth.format('DD/MM/YYYY')
                 },
-                sorter: (a, b) => a.dateOfBirth && a.dateOfBirth.length - b.dateOfBirth && b.dateOfBirth.length,
+                sorter: (a, b) => moment(a.dateOfBirth) - moment(b.dateOfBirth),
                 editable: true,
                 inputType: 'Date'
             },
             {
                 title: 'Address',
                 dataIndex: 'address',
-                sorter: (a, b) => a.address && a.address.length - b.address && b.address.length,
+                sorter: (a, b) =>  ('' + a.address).localeCompare(b.address),
                 editable: true,
                 inputType: 'TextArea'
             },
@@ -157,7 +157,6 @@ class ListUsersComponent extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 this.props.dispatch(actions.users.addUser(values)).then(result => {
                     if (result) {
                         this.fetch();
