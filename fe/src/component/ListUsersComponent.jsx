@@ -318,7 +318,7 @@ class ListUsersComponent extends Component {
                             <Col span={24}>
                                 <Form.Item label="Address">
                                     {getFieldDecorator('address')
-                                        (<Input.TextArea rows={4} placeholder="please enter url description" />)}
+                                        (<Input.TextArea rows={4} placeholder="Please enter address" />)}
                                 </Form.Item>
                             </Col>
                         </Row>
