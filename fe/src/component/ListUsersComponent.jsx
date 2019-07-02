@@ -26,7 +26,7 @@ class EditableCell extends React.Component {
     };
 
     renderCell = ({ getFieldDecorator }) => {
-        const {
+        let {
             editing,
             dataIndex,
             rules,
@@ -37,6 +37,9 @@ class EditableCell extends React.Component {
             children,
             ...restProps
         } = this.props;
+
+        if(Boolean(record)) {record.dateOfBirth = moment(record.dateOfBirth)}
+
         return (
             <td {...restProps}>
                 {editing ? (
@@ -86,7 +89,7 @@ class ListUsersComponent extends Component {
                 title: 'Date of Birth',
                 dataIndex: 'dateOfBirth',
                 render: (text, record) => {
-                    return record.dateOfBirth && moment(record.dateOfBirth, 'YYYY/MM/DD').format('DD/MM/YYYY')
+                    return record.dateOfBirth && record.dateOfBirth.format('DD/MM/YYYY')
                 },
                 sorter: (a, b) => a.dateOfBirth && a.dateOfBirth.length - b.dateOfBirth && b.dateOfBirth.length,
                 editable: true,
